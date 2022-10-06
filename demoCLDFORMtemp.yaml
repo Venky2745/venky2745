@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: "2010-09-09"
-Description: Sample template for s3 object trigger
+Description: Sample template for s3 object trigger Lambda Function
 Resources:
 
   CreateS3IAMROLE:
