@@ -1,5 +1,7 @@
 AWSTemplateFormatVersion: "2010-09-09"
+
 Description: Sample template for s3 object trigger Lambda Function
+
 Resources:
 
   CreateS3IAMROLE:
@@ -8,26 +10,26 @@ Resources:
       AssumeRolePolicyDocument:
         Version: '2012-10-17'
           Statement:
-            - Effect: Allow
-              Principal:
-                Service:
-                  - lambda.amazonaws.com
-              Action:
-                - sts:AssumeRole
+          - Effect: Allow
+            Principal:
+              Service:
+              - lambda.amazonaws.com
+            Action:
+            - sts:AssumeRole
           Description: The IAM Role which has full access to s3 buckets
           RoleName: S3FullAccessRole
           ManagedPolicyArns:
-            - arn:aws:iam::aws:policy/AmazonS3FullAccess
-            - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+          - arn:aws:iam::aws:policy/AmazonS3FullAccess
+          - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
 
 
   NowCreateLambdaFunction:
     Type: AWS::Lambda::Function
     Properties:
-      FunctionName: cldformnfun
+      FunctionName: CloudFormationFunction
       Code:
-        S3Bucket: mybucket4pyprgm
-        S3Key: lambda_function2.zip
+        S3Bucket: 1stbucket4lambdafun
+        S3Key: Task1.zip
       Description: This Function is called whenever an object lands on s3, to copy the object to another bucket
       Handler: lambda_function.lambda_handler
       Role: !GetAtt CreateS3IAMROLE.Arn
